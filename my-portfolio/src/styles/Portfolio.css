@@ -1,0 +1,218 @@
+/* ==============================
+   ✨ Portfolio Popup — Unified Rich Gray Interior (Final)
+   ============================== */
+
+/* === Popup Overlay === */
+.cert-popup-overlay,
+.portfolio-popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  animation: overlayFadeIn 0.2s ease-out forwards;
+}
+
+/* === Popup Container === */
+.cert-popup,
+.portfolio-popup {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+
+  width: 1280px;
+  height: 680px;
+  max-width: 92vw;
+  max-height: 82vh;
+
+  /* Slightly transparent dark base for glow consistency */
+  background: rgba(15, 15, 15, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+
+  border: 1px solid rgba(255, 215, 85, 0.25);
+  box-shadow:
+    0 0 45px rgba(255, 213, 74, 0.25),
+    0 0 90px rgba(255, 213, 74, 0.1),
+    inset 0 0 10px rgba(255, 213, 74, 0.05);
+
+  margin: auto;
+  box-sizing: border-box;
+
+  opacity: 0;
+  transform: scale(0.97) translateY(6px);
+  animation: popupOpen 0.25s cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
+}
+
+
+/* === Animations === */
+@keyframes popupOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+/* === Left & Right: Unified Interior Tone === */
+.popup-left,
+.popup-right {
+  flex: 1;
+  height: 100%;
+  box-sizing: border-box;
+
+  /* ✅ Exact rich gray tone from left panel */
+  background: #1d1d1d;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* === Left Side Content === */
+.popup-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px;
+  text-align: left;
+  gap: 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* === Right Side (Now same rich gray as left) === */
+.popup-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  border-left: none;
+  background: #1d1d1d; /* ✅ unified with left */
+}
+
+.popup-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 18px 18px 0;
+  border: none;
+  box-shadow: none;
+  transition: opacity 1s ease-in-out;
+}
+
+/* === Hover Disabled for Smooth Look === */
+.popup-right img:hover {
+  transform: none;
+  box-shadow: none;
+  filter: none;
+}
+
+/* === Responsive === */
+@media (max-width: 1280px) {
+  .portfolio-popup,
+  .cert-popup {
+    width: 1080px;
+    height: 580px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .portfolio-popup,
+  .cert-popup {
+    flex-direction: column;
+    width: 92%;
+    height: auto;
+    max-height: 90vh;
+  }
+
+  .popup-right img {
+    border-radius: 0 0 18px 18px;
+  }
+
+  .popup-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-popup,
+  .cert-popup {
+    width: 94%;
+    height: auto;
+  }
+}
+/* === Popup Right Image — Fully Visible Inside Fixed Box === */
+.popup-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: #1d1d1d;
+  overflow: hidden;
+  border-left: none;
+}
+
+.popup-right img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* keeps entire image visible */
+  object-position: center;
+  border-radius: 10px;
+  background-color: #0e0f0f;
+  transition: opacity 1s ease-in-out, transform 0.3s ease;
+}
+
+/* Slight smooth zoom feel (optional) */
+.popup-right img:hover {
+  transform: scale(1.02);
+}
+/* ✨ Smooth transition for switching sections */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Optional subtle scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+/* ===== Smooth Scroll + Section Reveal Animation ===== */
+
+.section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

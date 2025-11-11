@@ -1,0 +1,100 @@
+.preloader-container {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.preloader-content {
+  text-align: center;
+  animation: fadeIn 1.2s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+/* 🌀 Larger GIF, centered and softly animated */
+.gif-wrapper {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #f0ce6e; /* gold border */
+  background: radial-gradient(circle, #2b2b2b 0%, #1f1f1f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 35px rgba(240, 206, 110, 0.3);
+  animation: smoothGlow 3.8s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+/* 🧠 Keep the GIF perfectly circular and clean */
+.luffy-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: center;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* ✨ Name & Status Text */
+.preloader-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f0ce6e;
+  margin-top: 24px;
+  letter-spacing: 0.6px;
+  animation: fadeUp 1.4s ease-in-out forwards;
+}
+
+.preloader-subtext {
+  font-size: 1.15rem;
+  color: #f0ce6e;
+  margin-top: 8px;
+  opacity: 0.85;
+  animation: fadeUp 1.6s ease-in-out forwards;
+}
+
+/* 🔆 Ultra-smooth glow breathing animation */
+@keyframes smoothGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(240, 206, 110, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(240, 206, 110, 0.45);
+    transform: scale(1.03);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(240, 206, 110, 0.25);
+    transform: scale(1);
+  }
+}
+
+/* 🫧 Smooth fade-in pop for text */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌙 Fade-in for entire loader */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

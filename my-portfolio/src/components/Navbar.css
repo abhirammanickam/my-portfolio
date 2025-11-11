@@ -1,0 +1,92 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
+  border-radius: 20px 20px 0 0; /* match top curve */
+  padding: 25px 40px 15px 40px;
+  color: #fff;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  box-shadow: none; /* no bottom shadow line */
+  border: none; /* no edge border */
+  z-index: 2;
+}
+
+/* Removed the faint dividing line */
+.navbar::after {
+  content: none;
+}
+
+.nav-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- NAV LINK BASE --- */
+.nav-links li {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  border-bottom: 2px solid transparent; /* reserve space, prevent layout jump */
+  padding-bottom: 2px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover → only text color changes, NO line */
+.nav-links li:hover {
+  color: #fff;
+  border-bottom-color: transparent; /* prevent second line */
+}
+
+/* Active → gold underline, gold text */
+.nav-links li.active {
+  color: #d1a83a;
+  border-bottom-color: #d1a83a;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  flex: 1;
+  background: linear-gradient(180deg, #1f1f1f 0%, #1a1a1a 100%);
+  border-radius: 0 0 20px 20px; /* matching bottom curve */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: inset 0 0 25px rgba(209, 168, 58, 0.04),
+              0 4px 25px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.navbar,
+.main-content {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* --- NAV LINKS ANCHORS --- */
+.nav-links a {
+  text-decoration: none;
+  color: inherit; /* follow li color */
+  transition: all 0.3s ease;
+}
+
+/* Active anchor inherits gold underline and text */
+.nav-links a.active {
+  color: #d1a83a;
+  border-bottom: none; /* handled by li.active */
+}

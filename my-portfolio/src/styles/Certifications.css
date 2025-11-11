@@ -1,0 +1,386 @@
+/* ==============================
+   ✨ Certifications Page — Unified Popup Theme (Golden Glow + No Image Hover)
+   (Only required fixes applied: reduced outer blur, added unified glow,
+    increased inner blur, unified interior color, smoother open animation)
+   ============================== */
+
+.certifications-section {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 25px 0 60px 0;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
+  transition: all 0.4s ease-in-out;
+}
+
+.certifications-section::-webkit-scrollbar {
+  display: none;
+}
+
+/* === Inner Wrapper === */
+.certifications-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+/* === Filter Buttons === */
+.certification-filters {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.filter-btn.active,
+.filter-btn:hover {
+  color: #ffd54a;
+}
+.filter-btn.active::after,
+.filter-btn:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #ffd54a;
+  border-radius: 2px;
+}
+
+/* === Grid Layout === */
+.certifications-grid {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  justify-items: center;
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+}
+
+/* === Certification Card === */
+.cert-card {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #141414, #0f0f0f);
+  border: 1px solid #222;
+  transition: transform 0.36s ease, box-shadow 0.36s ease, border-color 0.36s ease;
+  position: relative;
+  text-align: left;
+}
+.cert-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55),
+              0 0 22px rgba(255, 213, 74, 0.08);
+  border-color: rgba(255, 213, 74, 0.28);
+}
+
+/* === Thumbnail === */
+.cert-thumb {
+  width: 100%;
+  height: 170px;
+  background: #0b0b0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cert-thumb img {
+  height: 80%;
+  object-fit: contain;
+  transition: transform 0.45s ease, opacity 0.35s ease;
+}
+.cert-card:hover .cert-thumb img {
+  transform: scale(1.06);
+  opacity: 0.95;
+}
+
+/* === Overlay === */
+.cert-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.56);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+.cert-card:hover .cert-overlay {
+  opacity: 1;
+}
+.cert-eye {
+  color: #ffd54a;
+  font-size: 1.8rem;
+}
+
+/* === Info Section === */
+.cert-info {
+  padding: 12px 14px 16px;
+}
+.cert-title {
+  font-size: 1.05rem;
+  color: #fff;
+  font-weight: 600;
+}
+.cert-issuer {
+  font-size: 0.9rem;
+  color: #ffd54a;
+}
+.cert-meta {
+  font-size: 0.85rem;
+  color: #a3a3a3;
+}
+
+/* =========================================================
+   ✅ Unified Popup — Matches Portfolio Glow (REQUIRED CHANGES ONLY)
+   ========================================================= */
+
+/* Outer overlay: reduce blur around popup (you asked "around the popup box not inside") */
+.cert-popup-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.62); /* slightly lighter backdrop */
+  backdrop-filter: blur(2px);      /* reduced blurness around popup */
+  -webkit-backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeInBackdrop 0.28s ease-out;
+  pointer-events: auto;
+}
+
+/* === Main Popup === */
+.cert-popup {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+
+  /* Unified background and Portfolio-style golden glow */
+  background: rgba(15, 15, 15, 0.94);
+  border-radius: 18px;
+
+  /* ✨ Portfolio-like golden outline + stronger glow */
+  border: 1px solid rgba(255, 215, 85, 0.28);
+  box-shadow:
+    0 0 55px rgba(255, 213, 74, 0.28),   /* stronger outer glow */
+    0 10px 40px rgba(0,0,0,0.55),
+    inset 0 0 14px rgba(255, 213, 74, 0.06); /* subtle inner glow */
+
+  width: 1280px;
+  height: 680px;
+  max-width: 92vw;
+  max-height: 82vh;
+
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+
+  /* Smooth, slightly snappier open animation */
+  animation: popupGlowIn 220ms cubic-bezier(.18,.9,.28,1) both;
+  transform-origin: center;
+}
+
+/* === LEFT & RIGHT: increase interior blurness + unify rich gray color === */
+.popup-left,
+.popup-right {
+  /* unified interior color requested: rich gray */
+  background: #1e1e1f;        /* rich gray matching left panel visual */
+  backdrop-filter: blur(8px); /* increased blur inside popup */
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* === Left Info Section === */
+.popup-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 50px 40px;
+  height: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.06); /* subtle divider */
+  box-sizing: border-box;
+}
+
+.popup-left h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.popup-left .popup-issuer {
+  font-size: 1rem;
+  color: #ffd54a;
+  margin-bottom: 16px;
+}
+.popup-left p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+.popup-left strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* === Technologies / Tools Badges === */
+.popup-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.popup-tools span {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+.popup-tools span:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* === Right Image / Preview Section === */
+.popup-right {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: #1e1e1f; /* unified with left interior */
+  box-sizing: border-box;
+}
+
+/* make image fit the interior and remove inner hover glow */
+.popup-right img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: none;       /* remove inner glow on image */
+  transition: opacity 180ms ease, transform 180ms ease; /* snappier */
+  will-change: opacity, transform;
+  pointer-events: none; /* avoid accidental clicks inside image */
+}
+
+/* completely disable hover transform/glow */
+.popup-right img:hover {
+  transform: none;
+  box-shadow: none;
+  filter: none;
+}
+
+/* === Close Button === */
+.popup-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: rgba(255, 255, 255, 0.02);
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.popup-close-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* === Animations === */
+@keyframes popupGlowIn {
+  from {
+    transform: translateY(8px) scale(0.985);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* === Small accessibility tweak — add class on body when popup open in JS:
+   body.popup-open { overflow: hidden; }  (use JS to toggle) */
+body.popup-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* === Responsive === */
+@media (max-width: 1280px) {
+  .cert-popup {
+    width: 1080px;
+    height: 580px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cert-popup {
+    flex-direction: column;
+    width: 95vw;
+    height: 90vh;
+  }
+  .popup-left {
+    padding: 25px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .popup-right {
+    padding: 20px;
+  }
+}
